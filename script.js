@@ -1,6 +1,7 @@
 let total = 0;
 let lista = "";
 
+
 function carrinho() {
     let produto = document.querySelector('input[name="produto"]:checked');
     let quantidade = document.getElementById("quantidade").value;
@@ -43,11 +44,20 @@ function carrinho() {
 
     document.getElementById("carrinho").innerHTML = lista + `<br><strong>Total: R$ ${total.toFixed(2)}</strong>`;
 }
+document.getElementById("pagamento").addEventListener("change", function() {
+    let parcelas = document.getElementById("parcelas");
+
+    if (this.value === "Credito") {
+        parcelas.style.display = "block";
+    } else {
+        parcelas.style.display = "none";
+    }
+});
 
 function finalizar() {
     let pagamento = document.getElementById("pagamento").value;
     let resultado = document.getElementById("resultado");
-
+    let parcelas = document.getElementById("parcelas").value;
 
     if (total === 0) {
         resultado.innerHTML = "Seu carrinho está vazio!";
@@ -62,6 +72,7 @@ function finalizar() {
     let totalFinal = total;
     let taxa = 0;
 
+    // TAXAS
     if (pagamento === "Debito") {
         taxa = total * 0.02;
     } else if (pagamento === "Credito") {
@@ -70,13 +81,24 @@ function finalizar() {
 
     totalFinal += taxa;
 
-    resultado.innerHTML = `
+    let mensagem = `
         ✅ Compra finalizada! <br>
         Total: R$ ${total.toFixed(2)} <br>
         Taxa: R$ ${taxa.toFixed(2)} <br>
         Total final: <strong>R$ ${totalFinal.toFixed(2)}</strong> <br>
-        Pagamento: ${pagamento} `;
+        Pagamento: ${pagamento}
+    `;
 
+    // PARCELAMENTO
+    if (pagamento === "Credito") {
+        let valorParcela = totalFinal / parcelas;
+
+        mensagem += `<br>Parcelado em ${parcelas}x de R$ ${valorParcela.toFixed(2)}`;
+    }
+
+    resultado.innerHTML = mensagem;
+
+    // RESET
     total = 0;
     lista = "";
     document.getElementById("carrinho").innerHTML = "";
