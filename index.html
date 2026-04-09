@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freddy Fazbear's Pizza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="principal">
+        <h1 class="titulo"> Freddy Fazbear's Pizza</h1>
+ 
+        <div class="produtos">
+            <h2 class="subtitulo">🍕Cardápio</h2>
+            <form>
+                   <label class='opcoes'>
+                        <input type="radio" name="produto" id="produto" value="1">
+                        Pizza de Pepperoni
+                   </label>
+                    <label class='opcoes'>
+                        <input type="radio" name="produto" id="produto" value="2">
+                        Pizza de Queijo
+                    </label>
+                    <label class='opcoes'>
+                        <input type="radio" name="produto" id="produto" value="3">
+                        Pizza de Frango
+                    </label>
+                    <label class='opcoes'>
+                        <input type="radio" name="produto" id="produto" value="4">
+                        Refrigerante Lata
+                    </label>
+                    <label class='opcoes'>
+                        <input type="radio" name="produto" id="produto" value="5">
+                        Chica Cupcake
+                    </label>
+                 <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade..." >
+            </form>
+        <button class="butao" onclick="carrinho()">Adicionar ao carrinho</button>
+        </div>
+ 
+        <div class="carrinho">
+            <h2 class="subtitulo">🛒 Carrinho</h2>
+            <p class="paragrafo" id="carrinho"></p>
+        </div>
+   
+        <div class="pagamento">
+            <h2 class="subtitulo">💰 Pagamento</h2>
+            <select name="pagamento" id="pagamento">
+                <option id="#" disabled selected>Selecione a forma de pagamento...</option>
+                <option id="Dinheiro">Dinheiro</option>
+                <option id="Pix">Pix</option>
+                <option id="Credito">Credito</option>
+                <option id="Debito">Debito</option>
+            </select>
+            <button class="botaofinal" onclick="finalizar()">Finalizar Compra</button>
+            <p id="resultado"></p>
+        </div>
+    </main>
+    <script src="script.js"></script> 
+</body>
+</html>
